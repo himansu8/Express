@@ -55,7 +55,7 @@ app.get('/multiply/:a/:b', (req,res)=>{
     res.status(400).send(`a and b should be a number`)
   }
   res.status(200).send(`multiplication of a and b is ${mul}` )
-})
+})  
 //------------------------------------------------------------------------ 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
