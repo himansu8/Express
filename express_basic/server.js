@@ -46,6 +46,16 @@ app.get('/add/:n1/:n2', (req, res) => {
   let sum= Number(req.params.n1)+Number(req.params.n2)
   res.send(`this sum is  ${sum}`)
 })
+//-----------------------------------------------------------------------
+//status code
+app.get('/multiply/:a/:b', (req,res)=>{
+  console.log(req.params)
+  let mul = Number(req.params.a) * Number (req.params.b)
+  if(!mul){
+    res.status(400).send(`a and b should be a number`)
+  }
+  res.status(200).send(`multiplication of a and b is ${mul}` )
+})
 //------------------------------------------------------------------------ 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
