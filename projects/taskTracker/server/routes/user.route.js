@@ -1,5 +1,5 @@
 import express from 'express';
-import {userAdd, userDelete } from '../controller/user.controller.js'
+import {signup, login } from '../controller/user.controller.js'
 
 
 const router = express.Router();
@@ -8,9 +8,9 @@ const router = express.Router();
 //     res.status(200).send('user root route')
 // })
 
-router.get('/add', userAdd);
+router.post('/signup', signup);
 
-router.get('/delete', userDelete);
+router.post('/login', login);
 
 
-export default router;
+export default router; 
