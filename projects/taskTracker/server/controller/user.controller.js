@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'node:fs/promises';
 import bcrypt from 'bcrypt';
+import generationToken from '../utils/generationToken';
 
 export const signup = async (req, res) => {
     try {
@@ -8,7 +9,7 @@ export const signup = async (req, res) => {
         //read the file 
         let fileData = await fs.readFile('./database/data.json');
         fileData = JSON.parse(fileData);
-        console.log(fileData);
+        //console.log(fileData);
         // duplicate the email and phone
         let emailFound = fileData.find((ele) => ele.email == email);
         if (emailFound) {
@@ -43,7 +44,7 @@ export const signup = async (req, res) => {
         // console.log(req.body)
         // let id = uuidv4();
         // console.log('id:' , id)
-       
+
         res.status(200).send('user signup');
     } catch (error) {
         res.status(500).send('something went wrong');
@@ -51,8 +52,30 @@ export const signup = async (req, res) => {
 
 }
 
-export const login = (req, res) => {
-    res.status(200).send('user login');
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        //read the file 
+        let fileData = await fs.readFile('./database/data.json');
+        fileData = JSON.parse(fileData);
+        //console.log(fileData);
+        // duplicate the email and phone
+        let emailFound = fileData.find((ele) => ele.email == email);
+        if (!emailFound) {
+            return res.status(404).send('Incorrect email id')
+        }
+        let matchPassword = await bcrypt.compare(password, emailFound.password);
+        if (!matchPassword) {
+            return res.status(404).send('Incorrect password')
+        }
+
+//generation token
+
+
+        res.status(200).send('user login');
+    } catch (error) {
+        res.status(500).send('something went wrong');
+    }
 }
 
 
