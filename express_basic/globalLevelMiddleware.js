@@ -7,7 +7,13 @@ function globalMiddleware(req, res, next) {
     console.log("globalMiddleware");
     next();
 }
+
+function globalMiddleware1(req, res, next) {
+    console.log("globalMiddleware last");
+    next();
+}
 app.use(globalMiddleware);
+
 
 
 
@@ -19,9 +25,16 @@ app.get('/first', (req, res) => {
 //app.use(globalMiddleware);
 
 
-app.get('/second', (req, res) => {
+app.get('/second', (req, res,next) => {
     console.log('second route')
     res.status(200).send("second route success")
+    next();
+})
+
+app.use(globalMiddleware1);
+
+app.get('/*',(req,res)=>{
+    res.status(404).send("route not found");
 })
 
 
