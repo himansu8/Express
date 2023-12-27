@@ -1,1 +1,20 @@
-[{"id":"88392cb0-042e-4f60-9803-3bc524b10471","firstName":"Himansu","lastName":"Sekhar Sahu","email":"himansusekharsahu501@gmail.com","phone":"+9174380234567","password":"$2b$12$4Va2vz.GmQ.J7I1NtKDn3O0ZaClM.vr5OajH2jbMfReLhUIOv/L2q","task":[]},{"id":"5b9e4417-9280-4436-acde-64651813c1be","firstName":"Himansu","lastName":"Sekhar Sahu","email":"raja@gmail.com","phone":"+917008309629","password":"$2b$12$D5VNnEdZNfT6NLc817J4Vui4wHBgKUnDwTu25mr1naiXefAdsLXUO","task":[]}]
+[
+    {
+        "id": "88392cb0-042e-4f60-9803-3bc524b10471",
+        "firstName": "Himansu",
+        "lastName": "Sekhar Sahu",
+        "email": "himansusekharsahu501@gmail.com",
+        "phone": "+9174380234567",
+        "password": "$2b$12$4Va2vz.GmQ.J7I1NtKDn3O0ZaClM.vr5OajH2jbMfReLhUIOv/L2q",
+        "task": []
+    },
+    {
+        "id": "5b9e4417-9280-4436-acde-64651813c1be",
+        "firstName": "Rajaram",
+        "lastName": "Sahoo",
+        "email": "raja@gmail.com",
+        "phone": "+917008309629",
+        "password": "$2b$12$D5VNnEdZNfT6NLc817J4Vui4wHBgKUnDwTu25mr1naiXefAdsLXUO",
+        "task": []
+    }
+]

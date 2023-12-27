@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'node:fs/promises';
 import bcrypt from 'bcrypt';
-import generationToken from '../utils/generationToken';
+import generationToken from '../utils/generationToken.js';
 
 export const signup = async (req, res) => {
     try {
@@ -13,11 +13,11 @@ export const signup = async (req, res) => {
         // duplicate the email and phone
         let emailFound = fileData.find((ele) => ele.email == email);
         if (emailFound) {
-            return res.status(409).send('user email already registered')
+            return res.status(409).json({ error: 'user email already registered' })
         }
         let phoneFound = fileData.find((ele) => ele.phone == phone);
         if (phoneFound) {
-            return res.status(409).send('user phone already registered')
+            return res.status(409).json({ error: 'user phone already registered' })
         }
 
 
@@ -45,9 +45,9 @@ export const signup = async (req, res) => {
         // let id = uuidv4();
         // console.log('id:' , id)
 
-        res.status(200).send('user signup');
+        res.status(200).json({ msg: 'user signup' });
     } catch (error) {
-        res.status(500).send('something went wrong');
+        res.status(500).json({ error: 'something went wrong' });
     }
 
 }
@@ -61,20 +61,25 @@ export const login = async (req, res) => {
         //console.log(fileData);
         // duplicate the email and phone
         let emailFound = fileData.find((ele) => ele.email == email);
+        console.log(emailFound)
         if (!emailFound) {
-            return res.status(404).send('Incorrect email id')
+            return res.status(401).json({ error: 'Incorrect email id' })
         }
         let matchPassword = await bcrypt.compare(password, emailFound.password);
         if (!matchPassword) {
-            return res.status(404).send('Incorrect password')
+            return res.status(401).json({ error: 'Incorrect password' })
         }
 
-//generation token
+        //generation token
+        let payload = {
+            email: emailFound.email
+        }
+        const token = generationToken(payload)
 
-
-        res.status(200).send('user login');
+        res.status(200).json({ msg: 'user login successfully' , token });
     } catch (error) {
-        res.status(500).send('something went wrong');
+        console.log(error)
+        res.status(500).json({ error: 'something went wrong' });
     }
 }
 

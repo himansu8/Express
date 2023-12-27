@@ -1,6 +1,8 @@
 //const express = require('express')
 import express from 'express'
 import userRoute from './routes/user.route.js'
+import taskRoute from './routes/task.route.js'
+
 const app = express();
 const port = 3000;
 
@@ -11,6 +13,11 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api/user',userRoute)
+app.use('/api/task',taskRoute)
+
+
+
+
 app.listen(port,()=>{
     console.log(`the server started at port no ${port}`)
 })
