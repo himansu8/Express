@@ -15,6 +15,28 @@
         "email": "raja@gmail.com",
         "phone": "+917008309629",
         "password": "$2b$12$D5VNnEdZNfT6NLc817J4Vui4wHBgKUnDwTu25mr1naiXefAdsLXUO",
-        "task": []
+        "task": [
+            {
+                "taskName": "Learn Express",
+                "taskId": "fb283edf-d2cf-4ebf-9d12-c414d5e8527e",
+                "taskCreateDate": "2023-12-27T09:47:21.362Z",
+                "taskDeadLine": "2024-01-27T09:37:40.250Z",
+                "isCompleted": false,
+                "reminder": []
+            },
+            {
+                "taskName": "Learn MongoDB",
+                "taskId": "d4fdc194-4f83-4fa0-a113-47714f488d45",
+                "taskCreateDate": "2023-12-27T11:16:09.886Z",
+                "taskDeadLine": "2024-01-31T09:37:40.250Z",
+                "isCompleted": false,
+                "reminder": [
+                    "2024-01-05T04:51:32.477Z",
+                    "2024-01-13T22:26:55.068Z",
+                    "2024-01-22T16:02:17.659Z",
+                    "2024-01-31T09:37:40.250Z"
+                ]
+            }
+        ]
     }
 ]

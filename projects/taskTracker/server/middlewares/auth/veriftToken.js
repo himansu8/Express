@@ -7,7 +7,7 @@ function authMiddleware(req,res,next){
     try {
         //console.log(req.headers.authorization);
         const token= req.headers.authorization.split(" ")[1]
-        console.log(token)
+        //console.log(token)
         const decoded = jwt.verify(token,private_key);
         //console.log(decoded);
        //res.status(200).json({msg:"working"})
