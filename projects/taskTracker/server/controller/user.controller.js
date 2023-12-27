@@ -72,7 +72,7 @@ export const login = async (req, res) => {
 
         //generation token
         let payload = {
-            email: emailFound.email
+            user_id: emailFound.id
         }
         const token = generationToken(payload)
 
