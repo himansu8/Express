@@ -17,24 +17,16 @@
         "password": "$2b$12$D5VNnEdZNfT6NLc817J4Vui4wHBgKUnDwTu25mr1naiXefAdsLXUO",
         "task": [
             {
-                "taskName": "Learn Express",
-                "taskId": "fb283edf-d2cf-4ebf-9d12-c414d5e8527e",
-                "taskCreateDate": "2023-12-27T09:47:21.362Z",
-                "taskDeadLine": "2024-01-27T09:37:40.250Z",
+                "taskName": "Learn MongoDB introduction",
+                "taskId": "1f2fe722-5ae3-464e-9bad-967baf00e643",
+                "taskCreateDate": "2023-12-28T17:56:56.209Z",
+                "taskDeadLine": "2024-03-02T09:37:40.250Z",
                 "isCompleted": false,
-                "reminder": []
-            },
-            {
-                "taskName": "Learn MongoDB",
-                "taskId": "d4fdc194-4f83-4fa0-a113-47714f488d45",
-                "taskCreateDate": "2023-12-27T11:16:09.886Z",
-                "taskDeadLine": "2024-01-31T09:37:40.250Z",
-                "isCompleted": false,
-                "reminder": [
-                    "2024-01-05T04:51:32.477Z",
-                    "2024-01-13T22:26:55.068Z",
-                    "2024-01-22T16:02:17.659Z",
-                    "2024-01-31T09:37:40.250Z"
+                "reminders": [
+                    "2024-01-13T21:52:07.219Z",
+                    "2024-01-30T01:47:18.229Z",
+                    "2024-02-15T05:42:29.239Z",
+                    "2024-03-02T09:37:40.250Z"
                 ]
             }
         ]

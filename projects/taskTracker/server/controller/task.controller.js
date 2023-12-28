@@ -22,21 +22,26 @@ export async function createTask(req, res) {
         //console.log("before push---------------")
         //console.log(userFound)
 
+        let cur_date = new Date();
+        let deadline_date = new Date(taskDeadLine);
+
+
+        let reminders = calculateReminder(cur_date, deadline_date);
+        //taskObj.reminder = [...reminders]
+
+
         let taskObj = {
             taskName,
             taskId: uuidv4(),
-            taskCreateDate: new Date(),
-            taskDeadLine: new Date(taskDeadLine),
+            taskCreateDate: cur_date,
+            taskDeadLine: deadline_date,
             isCompleted: false,
-            reminder: []
+            // reminder: []
+            reminders
         }
 
         //let { r1, r2, r3 } = calculateReminder(taskObj.taskCreateDate, taskObj.taskDeadLine);
-       //console.log(r1, r2, r3)
-
-
-        let calculatedReminder = calculateReminder(taskObj.taskCreateDate, taskObj.taskDeadLine);
-        taskObj.reminder = [...calculatedReminder, taskObj.taskDeadLine]
+        //console.log(r1, r2, r3)
 
         userFound.task.push(taskObj);
         //console.log("after push------------------")
