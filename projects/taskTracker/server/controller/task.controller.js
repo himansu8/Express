@@ -61,3 +61,45 @@ export async function createTask(req, res) {
 
     }
 }
+
+
+
+export async function deleteTask(req, res) {
+    try {
+        //console.log("decoded==>>",req.payload.user_id);
+        const { taskid } = req.params
+
+        //read the file 
+        let fileData = await fs.readFile('./database/data.json');
+        fileData = JSON.parse(fileData);
+        //console.log(fileData);
+
+
+        // find user id database
+        let userFound = fileData.find((ele) => ele.id == req.payload.user_id);
+        //console.log(userFound)
+        if (!userFound) {
+            return res.status(404).json({ error: 'not found' })
+        }
+
+        //find the task with the taskid after that remove the task from the array. cancel the jobs.  
+        //console.log(userFound);
+
+        let taskIndex = userFound.task.findIndex((ele) => ele.taskId == taskid)
+       // console.log(taskIndex)
+
+       if(taskIndex==-1){return res.status(404).json({ error: 'task not found' })}
+
+        userFound.task.splice(taskIndex, 1)
+
+        //write to file
+        await fs.writeFile('./database/data.json', JSON.stringify(fileData))
+
+        res.status(200).json({ msg: "task deleted successfylly" })
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "something went wrong" })
+
+    }
+}

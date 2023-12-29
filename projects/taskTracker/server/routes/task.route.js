@@ -1,5 +1,5 @@
 import express from 'express';
-import { createTask } from '../controller/task.controller.js';
+import { createTask, deleteTask } from '../controller/task.controller.js';
 import authMiddleware from '../middlewares/auth/veriftToken.js';
 
 
@@ -40,7 +40,7 @@ description: delete a single task
 method :delete
 api_url: api/task/:taskid
 */
-router.delete('/:taskid',authMiddleware);
+router.delete('/:taskid',authMiddleware,deleteTask);
 
 
 
