@@ -42,10 +42,15 @@ export async function createTask(req, res) {
 
         //let { r1, r2, r3 } = calculateReminder(taskObj.taskCreateDate, taskObj.taskDeadLine);
         //console.log(r1, r2, r3)
+        let foundtaskname=userFound.task.find((ele)=>ele.taskName==taskName)
+        if (foundtaskname) {
+            return res.status(404).json({ error: 'task alread exist' })
+        }
 
         userFound.task.push(taskObj);
         //console.log("after push------------------")
         //console.log(userFound)
+
 
         //write to file
         await fs.writeFile('./database/data.json', JSON.stringify(fileData))
@@ -58,7 +63,6 @@ export async function createTask(req, res) {
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "something went wrong" })
-
     }
 }
 
