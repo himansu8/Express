@@ -1,6 +1,7 @@
 import express from 'express';
-import { createTask, deleteTask } from '../controller/task.controller.js';
+import { createTask, deleteTask,updateTask } from '../controller/task.controller.js';
 import authMiddleware from '../middlewares/auth/veriftToken.js';
+import {validationErrors,taskNameValidation} from '../middlewares/validation/index.js'
 
 
 const router = express.Router();
@@ -10,7 +11,7 @@ description: create a single task
 method :post
 api_url: api/task
 */
-router.post('/',authMiddleware, createTask);
+router.post('/',authMiddleware,taskNameValidation(),validationErrors, createTask);
 
 /*
 description: get a all task
@@ -33,7 +34,7 @@ description: update a single task
 method :patch
 api_url: api/task/:taskid
 */
-router.patch('/:taskid',authMiddleware);
+router.patch('/:taskid',authMiddleware,updateTask);
 
 /*
 description: delete a single task

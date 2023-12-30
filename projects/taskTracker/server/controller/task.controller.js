@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'node:fs/promises';
 import calculateReminder from '../utils/reminder.js';
+import schedule from 'node-schedule';
 
 export async function createTask(req, res) {
     try {
@@ -42,7 +43,7 @@ export async function createTask(req, res) {
 
         //let { r1, r2, r3 } = calculateReminder(taskObj.taskCreateDate, taskObj.taskDeadLine);
         //console.log(r1, r2, r3)
-        let foundtaskname=userFound.task.find((ele)=>ele.taskName==taskName)
+        let foundtaskname = userFound.task.find((ele) => ele.taskName == taskName)
         if (foundtaskname) {
             return res.status(404).json({ error: 'task alread exist' })
         }
@@ -55,10 +56,21 @@ export async function createTask(req, res) {
         //write to file
         await fs.writeFile('./database/data.json', JSON.stringify(fileData))
 
-
-
-
         res.status(200).json({ msg: "task created successfylly" })
+
+        //scheduling the reminders notification for the each task
+        reminders.forEach((ele, index) => {
+            schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, function () {
+                console.log('sending a email notification');
+                console.log('sending a sms notification');
+            });
+        })
+
+        console.log("my reminder >>>> ", schedule.scheduledJobs);
+
+
+
+
 
     } catch (error) {
         console.log(error);
@@ -66,9 +78,36 @@ export async function createTask(req, res) {
     }
 }
 
-
-
 export async function deleteTask(req, res) {
+    try {
+        //console.log("decoded==>>",req.payload.user_id);
+        const { taskid } = req.params
+        //read the file
+        let fileData = await fs.readFile('./database/data.json');
+        fileData = JSON.parse(fileData);
+        //console.log(fileData);
+        // find user id database
+        let userFound = fileData.find((ele) => ele.id == req.payload.user_id);
+        //console.log(userFound)
+        if (!userFound) {
+            return res.status(404).json({ error: 'not found' })
+        }
+        //find the task with the taskid after that remove the task from the array. cancel the jobs.
+        //console.log(userFound);
+        let taskIndex = userFound.task.findIndex((ele) => ele.taskId == taskid)
+        // console.log(taskIndex)
+        if (taskIndex == -1) { return res.status(404).json({ error: 'task not found' }) }
+        userFound.task.splice(taskIndex, 1)
+        //write to file
+        await fs.writeFile('./database/data.json', JSON.stringify(fileData))
+        res.status(200).json({ msg: "task deleted successfylly" })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "something went wrong" })
+    }
+}
+
+export async function updateTask(req, res) {
     try {
         //console.log("decoded==>>",req.payload.user_id);
         const { taskid } = req.params
@@ -90,16 +129,16 @@ export async function deleteTask(req, res) {
         //console.log(userFound);
 
         let taskIndex = userFound.task.findIndex((ele) => ele.taskId == taskid)
-       // console.log(taskIndex)
+        // console.log(taskIndex)
 
-       if(taskIndex==-1){return res.status(404).json({ error: 'task not found' })}
+        if (taskIndex == -1) { return res.status(404).json({ error: 'task not found' }) }
 
-        userFound.task.splice(taskIndex, 1)
-
+        userFound.task[taskIndex].taskName = req.body.taskName;
+        //userFound.task.push(taskObj);
         //write to file
         await fs.writeFile('./database/data.json', JSON.stringify(fileData))
 
-        res.status(200).json({ msg: "task deleted successfylly" })
+        res.status(200).json({ msg: "task updated successfylly" })
 
     } catch (error) {
         console.log(error);
@@ -107,3 +146,6 @@ export async function deleteTask(req, res) {
 
     }
 }
+
+
+
