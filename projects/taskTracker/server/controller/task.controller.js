@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import fs from 'node:fs/promises';
 import calculateReminder from '../utils/reminder.js';
 import schedule from 'node-schedule';
+//import reminderScheduling from '../utils/scheduleJob.js'
 
 export async function createTask(req, res) {
     try {
@@ -59,14 +60,29 @@ export async function createTask(req, res) {
         res.status(200).json({ msg: "task created successfylly" })
 
         //scheduling the reminders notification for the each task
+
         reminders.forEach((ele, index) => {
-            schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, function () {
+            schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, function (){
                 console.log('sending a email notification');
-                console.log('sending a sms notification');
+                console.log('sending a sms notification');   
             });
         })
 
+
+        // reminders.forEach((ele, index) => {
+        //     schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, reminderScheduling());
+        // })
+
         console.log("my reminder >>>> ", schedule.scheduledJobs);
+    
+        // schedule.cancelJob(`${taskObj.taskId}_4`)
+        // console.log("============================================= ");
+
+        // console.log("my reminder after deletion the last one >>>> ", schedule.scheduledJobs);
+
+
+
+
 
 
 
