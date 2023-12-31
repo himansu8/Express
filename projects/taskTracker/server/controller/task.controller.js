@@ -170,7 +170,7 @@ export async function updateTask(req, res) {
         userFound.task[taskIndex].taskDeadLine = deadline_date;
 
         let cur_date = userFound.task[taskIndex].taskCreateDate
-        let create_date=new Date(cur_date)
+        let create_date = new Date(cur_date)
         let update_reminders = calculateReminder(create_date, deadline_date);
 
         userFound.task[taskIndex].reminders = update_reminders
@@ -189,4 +189,59 @@ export async function updateTask(req, res) {
 }
 
 
+export async function allTask(req, res) {
+    try {
+        //console.log("decoded==>>",req.payload.user_id);
+        //read the file
+        let fileData = await fs.readFile('./database/data.json');
+        fileData = JSON.parse(fileData);
+        //console.log(fileData);
+        // find user id database
+        let userFound = fileData.find((ele) => ele.id == req.payload.user_id);
+        //console.log(userFound)
+        if (!userFound) {
+            return res.status(404).json({ error: 'not found' })
+        }
+
+        let alltask = userFound.task
+        res.status(200).send(alltask)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "something went wrong" })
+    }
+}
+
+export async function singleTask(req, res) {
+    try {
+        //console.log("decoded==>>",req.payload.user_id);
+        const { taskid } = req.params
+
+        //read the file
+        let fileData = await fs.readFile('./database/data.json');
+        fileData = JSON.parse(fileData);
+        //console.log(fileData);
+        // find user id database
+        let userFound = fileData.find((ele) => ele.id == req.payload.user_id);
+        //console.log(userFound)
+        if (!userFound) {
+            return res.status(404).json({ error: 'not found' })
+        }
+
+        let taskIndex = userFound.task.findIndex((ele) => ele.taskId == taskid)
+        // console.log(taskIndex)
+
+
+        if (taskIndex == -1) {
+            return res.status(404).json({ error: 'task not found' })
+        }
+
+        let singletask = userFound.task[taskIndex]
+        res.status(200).send(singletask)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "something went wrong" })
+    }
+}
 

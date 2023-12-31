@@ -1,5 +1,5 @@
 import express from 'express';
-import { createTask, deleteTask,updateTask } from '../controller/task.controller.js';
+import { createTask, deleteTask,updateTask, allTask, singleTask } from '../controller/task.controller.js';
 import authMiddleware from '../middlewares/auth/veriftToken.js';
 import {validationErrors,taskNameValidation} from '../middlewares/validation/index.js'
 
@@ -18,7 +18,7 @@ description: get a all task
 method :get
 api_url: api/task
 */
-router.get('/',authMiddleware );
+router.get('/',authMiddleware, allTask );
 
 
 /*
@@ -26,7 +26,7 @@ description: get a single task
 method :get
 api_url: api/task/:taskid
 */
-router.get('/:taskid',authMiddleware);
+router.get('/:taskid',authMiddleware,singleTask);
 
 
 /*
