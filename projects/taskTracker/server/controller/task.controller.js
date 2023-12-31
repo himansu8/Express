@@ -62,9 +62,9 @@ export async function createTask(req, res) {
         //scheduling the reminders notification for the each task
 
         reminders.forEach((ele, index) => {
-            schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, function (){
+            schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, function () {
                 console.log('sending a email notification');
-                console.log('sending a sms notification');   
+                console.log('sending a sms notification');
             });
         })
 
@@ -74,7 +74,7 @@ export async function createTask(req, res) {
         // })
 
         console.log("my reminder >>>> ", schedule.scheduledJobs);
-    
+
         // schedule.cancelJob(`${taskObj.taskId}_4`)
         // console.log("============================================= ");
 
@@ -108,12 +108,28 @@ export async function deleteTask(req, res) {
         if (!userFound) {
             return res.status(404).json({ error: 'not found' })
         }
+
+
         //find the task with the taskid after that remove the task from the array. cancel the jobs.
         //console.log(userFound);
         let taskIndex = userFound.task.findIndex((ele) => ele.taskId == taskid)
         // console.log(taskIndex)
-        if (taskIndex == -1) { return res.status(404).json({ error: 'task not found' }) }
+
+
+        if (taskIndex == -1) {
+            return res.status(404).json({ error: 'task not found' })
+        }
+
+        // delete the task from task array
         userFound.task.splice(taskIndex, 1)
+
+        //remove the schedule jobs
+        userFound.task[taskIndex].reminders.forEach((ele, index) => {
+            schedule.cancelJob(`${taskid}_${index + 1}`);
+        })
+
+
+
         //write to file
         await fs.writeFile('./database/data.json', JSON.stringify(fileData))
         res.status(200).json({ msg: "task deleted successfylly" })
@@ -127,6 +143,7 @@ export async function updateTask(req, res) {
     try {
         //console.log("decoded==>>",req.payload.user_id);
         const { taskid } = req.params
+        const { taskDeadLine } = req.body
 
         //read the file 
         let fileData = await fs.readFile('./database/data.json');
@@ -148,8 +165,16 @@ export async function updateTask(req, res) {
         // console.log(taskIndex)
 
         if (taskIndex == -1) { return res.status(404).json({ error: 'task not found' }) }
-
+        let deadline_date = new Date(taskDeadLine);
         userFound.task[taskIndex].taskName = req.body.taskName;
+        userFound.task[taskIndex].taskDeadLine = deadline_date;
+
+        let cur_date = userFound.task[taskIndex].taskCreateDate
+        let create_date=new Date(cur_date)
+        let update_reminders = calculateReminder(create_date, deadline_date);
+
+        userFound.task[taskIndex].reminders = update_reminders
+
         //userFound.task.push(taskObj);
         //write to file
         await fs.writeFile('./database/data.json', JSON.stringify(fileData))
