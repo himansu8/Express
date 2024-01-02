@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import fs from 'node:fs/promises';
 import calculateReminder from '../utils/reminder.js';
 import schedule from 'node-schedule';
-//import reminderScheduling from '../utils/scheduleJob.js'
+import reminderScheduling from '../utils/scheduleJob.js'
 
 export async function createTask(req, res) {
     try {
@@ -61,17 +61,17 @@ export async function createTask(req, res) {
 
         //scheduling the reminders notification for the each task
 
-        reminders.forEach((ele, index) => {
-            schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, function () {
-                console.log('sending a email notification');
-                console.log('sending a sms notification');
-            });
-        })
-
-
         // reminders.forEach((ele, index) => {
-        //     schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, reminderScheduling());
+        //     schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, function () {
+        //         console.log('sending a email notification');
+        //         console.log('sending a sms notification');
+        //     });
         // })
+
+
+        reminders.forEach((ele, index) => {
+            schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, reminderScheduling);
+        })
 
         console.log("my reminder >>>> ", schedule.scheduledJobs);
 
@@ -124,10 +124,11 @@ export async function deleteTask(req, res) {
         userFound.task.splice(taskIndex, 1)
 
         //remove the schedule jobs
-        userFound.task[taskIndex].reminders.forEach((ele, index) => {
-            schedule.cancelJob(`${taskid}_${index + 1}`);
-        })
+        // userFound.task[taskIndex].reminders.forEach((ele, index) => {
+        //     schedule.cancelJob(`${taskid}_${index + 1}`);
+        // })
 
+        // console.log(schedule.scheduledJobs)
 
 
         //write to file
@@ -175,7 +176,18 @@ export async function updateTask(req, res) {
 
         userFound.task[taskIndex].reminders = update_reminders
 
+        
+
+        //rescheduling the jobs===========================================
+        // userFound.task[taskIndex].reminders.forEach((ele, index) => {
+        //     schedule.rescheduleJob(`${taskid}_${index + 1}`);
+        // })
+
+        // console.log(schedule.scheduledJobs)
         //userFound.task.push(taskObj);
+
+
+        
         //write to file
         await fs.writeFile('./database/data.json', JSON.stringify(fileData))
 

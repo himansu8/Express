@@ -3,7 +3,6 @@ import { createTask, deleteTask,updateTask, allTask, singleTask } from '../contr
 import authMiddleware from '../middlewares/auth/veriftToken.js';
 import {validationErrors,taskNameValidation} from '../middlewares/validation/index.js'
 
-
 const router = express.Router();
 
 /*
