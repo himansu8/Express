@@ -121,14 +121,16 @@ export async function deleteTask(req, res) {
         }
 
         // delete the task from task array
-        userFound.task.splice(taskIndex, 1)
 
         //remove the schedule jobs
-        // userFound.task[taskIndex].reminders.forEach((ele, index) => {
-        //     schedule.cancelJob(`${taskid}_${index + 1}`);
-        // })
+        userFound.task[taskIndex].reminders.forEach((ele, index) => {
+            schedule.cancelJob(`${taskid}_${index + 1}`);
+        })
 
-        // console.log(schedule.scheduledJobs)
+        console.log(schedule.scheduledJobs)
+
+        userFound.task.splice(taskIndex, 1)
+
 
 
         //write to file
@@ -176,14 +178,18 @@ export async function updateTask(req, res) {
 
         userFound.task[taskIndex].reminders = update_reminders
 
-        
+        //cancell the job 
+        userFound.task[taskIndex].reminders.forEach((ele, index) => {
+            schedule.cancelJob(`${taskid}_${index + 1}`);
+        })
+
 
         //rescheduling the jobs===========================================
-        // userFound.task[taskIndex].reminders.forEach((ele, index) => {
-        //     schedule.rescheduleJob(`${taskid}_${index + 1}`);
-        // })
-
-        // console.log(schedule.scheduledJobs)
+        userFound.task[taskIndex].reminders.forEach((ele, index) => {
+            schedule.scheduleJob(`${taskid}_${index + 1}`, ele, reminderScheduling);
+        })
+       
+        console.log(schedule.scheduledJobs)
         //userFound.task.push(taskObj);
 
 
