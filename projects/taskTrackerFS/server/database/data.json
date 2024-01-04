@@ -1,0 +1,155 @@
+[
+    {
+        "id": "9ba1c166-d66b-47ce-9dc1-d9380ed6190f",
+        "firstName": "Himansu",
+        "lastName": "Sekhar Sahu",
+        "email": "himansu8@gmail.com",
+        "phone": "+917438023456",
+        "password": "$2b$12$EvqYLB65HvkbDVhhdQ.pT.lNftMvQmudtuVVDw7L1UcjViyoOIX1K",
+        "task": [
+            {
+                "taskName": "express ",
+                "taskId": "659a3c53-cf5c-4035-99a0-20b626682110",
+                "taskCreateDate": "2023-12-30T12:09:26.050Z",
+                "taskDeadLine": "2024-02-25T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-13T15:07:04.537Z",
+                    "2024-01-27T18:04:43.025Z",
+                    "2024-02-10T21:02:21.512Z",
+                    "2024-02-25T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "mongodb completed",
+                "taskId": "40365b85-45fe-464c-8186-26be8a00e16f",
+                "taskCreateDate": "2023-12-30T12:09:46.984Z",
+                "taskDeadLine": "2024-08-25T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-02-28T03:07:20.238Z",
+                    "2024-04-27T18:04:53.492Z",
+                    "2024-06-26T09:02:26.746Z",
+                    "2024-08-25T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "react completed",
+                "taskId": "db27518a-3c09-44b0-8075-f9bb900a9a2b",
+                "taskCreateDate": "2023-12-30T18:41:16.880Z",
+                "taskDeadLine": "2024-08-25T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-02-28T08:00:57.660Z",
+                    "2024-04-27T21:20:38.440Z",
+                    "2024-06-26T10:40:19.220Z",
+                    "2024-08-25T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "react 123 ",
+                "taskId": "11fcd639-5ef4-44df-ab1a-754780d85bf2",
+                "taskCreateDate": "2023-12-30T18:42:36.597Z",
+                "taskDeadLine": "2024-03-25T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-21T02:01:57.447Z",
+                    "2024-02-11T09:21:18.298Z",
+                    "2024-03-03T16:40:39.149Z",
+                    "2024-03-25T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "express basic ",
+                "taskId": "8bc2fc8b-7ea3-415e-ab31-c3561f97f289",
+                "taskCreateDate": "2023-12-30T18:53:43.177Z",
+                "taskDeadLine": "2024-03-25T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-21T02:10:17.382Z",
+                    "2024-02-11T09:26:51.588Z",
+                    "2024-03-03T16:43:25.794Z",
+                    "2024-03-25T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "express basic 1 ",
+                "taskId": "53090f17-0347-4d05-8979-9bc1f8d66d62",
+                "taskCreateDate": "2023-12-30T18:54:45.133Z",
+                "taskDeadLine": "2024-03-25T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-21T02:11:03.849Z",
+                    "2024-02-11T09:27:22.566Z",
+                    "2024-03-03T16:43:41.283Z",
+                    "2024-03-25T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "express basic 2 ",
+                "taskId": "4229df70-c70c-4031-99a0-f1830a7c613f",
+                "taskCreateDate": "2023-12-30T18:58:14.672Z",
+                "taskDeadLine": "2024-03-25T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-21T02:13:41.004Z",
+                    "2024-02-11T09:29:07.336Z",
+                    "2024-03-03T16:44:33.668Z",
+                    "2024-03-25T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "express basic 3 ",
+                "taskId": "df8db208-0d10-4c6b-960a-a57f802c6217",
+                "taskCreateDate": "2023-12-30T19:02:37.548Z",
+                "taskDeadLine": "2024-03-25T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-21T02:16:58.161Z",
+                    "2024-02-11T09:31:18.774Z",
+                    "2024-03-03T16:45:39.387Z",
+                    "2024-03-25T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "express 4",
+                "taskId": "5f6043fc-9666-4061-a51e-e27bb1d71c65",
+                "taskCreateDate": "2023-12-31T17:31:45.978Z",
+                "taskDeadLine": "2024-04-30T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-30T19:08:49.483Z",
+                    "2024-02-29T20:45:52.989Z",
+                    "2024-03-30T22:22:56.494Z",
+                    "2024-04-30T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "express basic 6 ",
+                "taskId": "ba9a10b2-bc09-44ee-a8ca-ebad879cf8e3",
+                "taskCreateDate": "2024-01-02T18:11:33.150Z",
+                "taskDeadLine": "2024-01-03T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-02T19:38:39.862Z",
+                    "2024-01-02T21:05:46.575Z",
+                    "2024-01-02T22:32:53.287Z",
+                    "2024-01-03T00:00:00.000Z"
+                ]
+            },
+            {
+                "taskName": "express 9",
+                "taskId": "fdb68b87-0cf8-4ae5-a6a9-f892097a53b8",
+                "taskCreateDate": "2024-01-03T01:43:53.593Z",
+                "taskDeadLine": "2024-02-02T00:00:00.000Z",
+                "isCompleted": false,
+                "reminders": [
+                    "2024-01-10T13:17:55.194Z",
+                    "2024-01-18T00:51:56.796Z",
+                    "2024-01-25T12:25:58.398Z",
+                    "2024-02-02T00:00:00.000Z"
+                ]
+            }
+        ]
+    }
+]
