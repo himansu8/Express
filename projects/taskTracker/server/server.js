@@ -2,6 +2,7 @@
 import express from 'express'
 import userRoute from './routes/user.route.js'
 import taskRoute from './routes/task.route.js'
+import './dbConnect.js';
 
 const app = express();
 const port = 3000;

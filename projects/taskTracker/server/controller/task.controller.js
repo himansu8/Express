@@ -3,26 +3,20 @@ import fs from 'node:fs/promises';
 import calculateReminder from '../utils/reminder.js';
 import schedule from 'node-schedule';
 import reminderScheduling from '../utils/scheduleJob.js'
+import taskModel from '../models/taskModel.js';
+import userModel from '../models/userModel.js';
 
 export async function createTask(req, res) {
     try {
         //console.log("decoded==>>",req.payload.user_id);
         const { taskName, taskDeadLine } = req.body
 
-        //read the file 
-        let fileData = await fs.readFile('./database/data.json');
-        fileData = JSON.parse(fileData);
-        //console.log(fileData);
-
-
         // find user id database
-        let userFound = fileData.find((ele) => ele.id == req.payload.user_id);
+        let userFound = await userModel.findById(req.payload.user_id)
         //console.log(userFound)
         if (!userFound) {
             return res.status(404).json({ error: 'not found' })
         }
-        //console.log("before push---------------")
-        //console.log(userFound)
 
         let cur_date = new Date();
         let deadline_date = new Date(taskDeadLine);
@@ -33,60 +27,29 @@ export async function createTask(req, res) {
 
 
         let taskObj = {
+            userId: req.payload.user_id,
             taskName,
-            taskId: uuidv4(),
-            taskCreateDate: cur_date,
-            taskDeadLine: deadline_date,
+            createdAt: cur_date,
+            deadline: deadline_date,
             isCompleted: false,
             // reminder: []
             reminders
         }
 
-        //let { r1, r2, r3 } = calculateReminder(taskObj.taskCreateDate, taskObj.taskDeadLine);
-        //console.log(r1, r2, r3)
-        let foundtaskname = userFound.task.find((ele) => ele.taskName == taskName)
-        if (foundtaskname) {
-            return res.status(404).json({ error: 'task alread exist' })
-        }
-
-        userFound.task.push(taskObj);
-        //console.log("after push------------------")
-        //console.log(userFound)
-
-
-        //write to file
-        await fs.writeFile('./database/data.json', JSON.stringify(fileData))
-
+        // let foundtaskname = userFound.task.find((ele) => ele.taskName == taskName)
+        // if (foundtaskname) {
+        //     return res.status(404).json({ error: 'task alread exist' })
+        // }
+        let task = await taskModel.create(taskObj);
         res.status(200).json({ msg: "task created successfylly" })
 
         //scheduling the reminders notification for the each task
 
-        // reminders.forEach((ele, index) => {
-        //     schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, function () {
-        //         console.log('sending a email notification');
-        //         console.log('sending a sms notification');
-        //     });
-        // })
-
-
         reminders.forEach((ele, index) => {
-            schedule.scheduleJob(`${taskObj.taskId}_${index + 1}`, ele, reminderScheduling);
+            schedule.scheduleJob(`${task.id}_${index + 1}`, ele, reminderScheduling);
         })
 
-        console.log("my reminder >>>> ", schedule.scheduledJobs);
-
-        // schedule.cancelJob(`${taskObj.taskId}_4`)
-        // console.log("============================================= ");
-
-        // console.log("my reminder after deletion the last one >>>> ", schedule.scheduledJobs);
-
-
-
-
-
-
-
-
+        //console.log("my reminder >>>> ", schedule.scheduledJobs);
 
     } catch (error) {
         console.log(error);
@@ -188,12 +151,12 @@ export async function updateTask(req, res) {
         userFound.task[taskIndex].reminders.forEach((ele, index) => {
             schedule.scheduleJob(`${taskid}_${index + 1}`, ele, reminderScheduling);
         })
-       
+
         console.log(schedule.scheduledJobs)
         //userFound.task.push(taskObj);
 
 
-        
+
         //write to file
         await fs.writeFile('./database/data.json', JSON.stringify(fileData))
 
