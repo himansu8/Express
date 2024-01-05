@@ -1,5 +1,6 @@
 import { body, validationResult } from 'express-validator';
 
+
 //let { firstName, lastName, email, phone, password } = req.body
 
 function signupValidation() {

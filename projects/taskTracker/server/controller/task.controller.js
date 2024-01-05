@@ -3,6 +3,7 @@ import schedule from 'node-schedule';
 import reminderScheduling from '../utils/scheduleJob.js'
 import taskModel from '../models/taskModel.js';
 import userModel from '../models/userModel.js';
+import mongoose from 'mongoose';
 
 export async function createTask(req, res) {
     try {
@@ -60,7 +61,12 @@ export async function deleteTask(req, res) {
         //console.log("decoded==>>",req.payload.user_id);
         const { taskid } = req.params
 
-        let singletask = await taskModel.findByIdAndDelete(taskid);
+        if (!mongoose.isValidObjectId(taskid)) {
+            return res.status(400).json({ error: 'please pass valid taskid' })
+        }
+
+        let singletask = await taskModel.findOneAndDelete({ _id: taskid });
+        console.log(singletask)
         if (!singletask) {
             return res.status(404).json({ error: 'Task not found' });
         }
@@ -71,7 +77,7 @@ export async function deleteTask(req, res) {
             schedule.cancelJob(`${taskid}_${index + 1}`);
         });
 
-        console.log(schedule.scheduledJobs)
+        //console.log(schedule.scheduledJobs)
 
         res.status(200).json({ msg: "task deleted successfylly" })
     } catch (error) {
@@ -86,23 +92,37 @@ export async function updateTask(req, res) {
         const { taskid } = req.params
         const { updateTaskName, taskDeadLine } = req.body
 
+        if (!mongoose.isValidObjectId(taskid)) {
+            return res.status(400).json({ error: 'please pass valid taskid' })
+        }
 
-        let deadline_date = Date(taskDeadLine);
+        let deadline_date = new Date(taskDeadLine);
+        let cur_date = new Date()
+        let newReminders = calculateReminder(cur_date, deadline_date)
+
 
         let task = await taskModel.findByIdAndUpdate(
             taskid,
-            { taskName: updateTaskName },
-            { deadline: deadline_date},
+            { $set: { taskName: updateTaskName, deadline: deadline_date, reminders:newReminders  } },
             { new: true }
         );
-        if (task == -1) {
+        if (!task) {
             return res.status(404).json({ error: 'task not found' })
         }
-        // console.log(task)
+        //console.log(task)
+
+        //cancell the job 
+        task.reminders.forEach((ele, index) => {
+            schedule.cancelJob(`${taskid}_${index + 1}`);
+        })
+
+
+        //rescheduling the jobs===========================================
+        task.reminders.forEach((ele, index) => {
+            schedule.scheduleJob(`${taskid}_${index + 1}`, ele, reminderScheduling);
+        })
 
         res.status(200).json({ msg: "task updated successfylly" })
-
-
 
     } catch (error) {
         console.log(error);
@@ -114,8 +134,17 @@ export async function updateTask(req, res) {
 
 export async function allTask(req, res) {
     try {
+        if (!mongoose.isValidObjectId(req.payload.user_id)) {
+            return res.status(400).json({ error: 'please pass valid userid' })
+        }
 
         let tasks = await taskModel.find({ userId: req.payload.user_id });
+
+
+        if (!tasks) {
+            return res.status(404).json({ error: 'task not found' })
+        }
+
         res.status(200).send(tasks)
 
     } catch (error) {
@@ -127,9 +156,16 @@ export async function allTask(req, res) {
 export async function singleTask(req, res) {
     try {
         const { taskid } = req.params
-        let singletask = await taskModel.find({ _id: taskid });
-        console.log(singletask)
-        if (singletask == -1) {
+
+        if (!mongoose.isValidObjectId(taskid)) {
+            return res.status(400).json({ error: 'please pass valid taskid' })
+        }
+
+
+        let singletask = await taskModel.findById(taskid);
+        //console.log(singletask)
+
+        if (!singletask) {
             return res.status(404).json({ error: 'task not found' })
         }
         res.status(200).send(singletask)
