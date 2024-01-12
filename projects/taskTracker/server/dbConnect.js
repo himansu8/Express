@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
-import 'dotenv/config'
+import config from "./config/config.js";
 
 
 //console.log(process.env.MONGODB_URI)
 
-
+const {MONGO_URL} = config
 
 async function dbConnect() {
 
     try {
-        await mongoose.connect(process.env.MONGODB_URI);
+        await mongoose.connect(MONGO_URL);
         console.log("DB connected successfully");
     } catch (error) {
         console.log(error);

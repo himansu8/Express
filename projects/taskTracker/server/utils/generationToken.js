@@ -1,8 +1,15 @@
 import jwt from 'jsonwebtoken';
-const private_key= 'code'
+
+import config from '../config/config.js';
+
+
+const private_key= config.PRIVATE_KEY;
+//const expiresIn= config.JWT_EXPIRY;
+
+
 function generationToken (payload){
     const token = jwt.sign(payload, private_key)
-    //const token = jwt.sign(payload, private_key,{expiresIn : "10d"})
+    //const token = jwt.sign(payload, private_key,{expiresIn})
 
     //console.log("encoded---------------")
     //console.log(token)

@@ -23,6 +23,27 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+
+    isVerified: {
+        email: {
+            type: Boolean,
+            default: false
+        },
+        phone: {
+            type: Boolean,
+            default: false
+        }
+    },
+    userverifyToken: {
+        email: {
+            type: String,
+            required: true
+        },
+        phone: {
+            type: String,
+            required: true
+        },
     }
 
 });

@@ -28,7 +28,7 @@ function taskNameValidation() {
 
     return [
         body('taskName', 'TasktName does not blank').notEmpty(),
-        body('taskDeadLine', 'password is missing').custom(value => {
+        body('taskDeadLine',).custom(value => {
             // // Validate the date format using a regular expression
             // if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
             //     throw new Error('Invalid date format. Please use YYYY-MM-DD.');
@@ -49,10 +49,10 @@ function taskNameValidation() {
 
             }
 
-            if (differenceMin < 30 || differencDay > 30) {
-                throw new Error('date should be greater than 30 mins and less than 30 days ');
+            // if (differenceMin < 30 || differencDay > 30) {
+            //     throw new Error('date should be greater than 30 mins and less than 30 days ');
 
-            }
+            // }
 
             else {
                 return true;
@@ -63,9 +63,6 @@ function taskNameValidation() {
 
     ]
 }
-
-
-
 function validationErrors(req, res, next) {
     const result = validationResult(req);
     if (result.isEmpty()) {

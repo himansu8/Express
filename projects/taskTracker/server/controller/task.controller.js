@@ -1,9 +1,11 @@
 import calculateReminder from '../utils/reminder.js';
 import schedule from 'node-schedule';
-import reminderScheduling from '../utils/scheduleJob.js'
+//import reminderScheduling from '../utils/scheduleJob.js'
 import taskModel from '../models/taskModel.js';
 import userModel from '../models/userModel.js';
 import mongoose from 'mongoose';
+import sendMail from '../email_demo.js';
+
 
 export async function createTask(req, res) {
     try {
@@ -24,6 +26,15 @@ export async function createTask(req, res) {
         let reminders = calculateReminder(cur_date, deadline_date);
         //taskObj.reminder = [...reminders]
 
+        const existingTask = await taskModel.findOne({
+            // userId: req.payload.user_id,
+            taskName: taskName
+        });
+
+        if (existingTask) {
+            return res.status(400).json({ error: 'Task name already exists for this user' });
+        }
+
 
         let taskObj = {
             userId: req.payload.user_id,
@@ -35,20 +46,28 @@ export async function createTask(req, res) {
             reminders
         }
 
-        // let foundtaskname = userFound.task.find((ele) => ele.taskName == taskName)
-        // if (foundtaskname) {
-        //     return res.status(404).json({ error: 'task alread exist' })
-        // }
+ 
         let task = await taskModel.create(taskObj);
+      
+
         res.status(200).json({ msg: "task created successfylly" })
+
+        let userMailBody = {
+            to : userFound.email,
+            subject:"Task Tracker",
+            text : `Your Task ${taskObj.taskName} has been scheduled`
+        }
 
         //scheduling the reminders notification for the each task
 
         reminders.forEach((ele, index) => {
-            schedule.scheduleJob(`${task._id}${index + 1}`, ele, reminderScheduling);
+            schedule.scheduleJob(`${task._id}_${index + 1}`, ele, function(){
+                sendMail(userMailBody)
+              //reminderScheduling(userMailBody)
+            });
         })
 
-        //console.log("my reminder >>>> ", schedule.scheduledJobs);
+       //console.log("my reminder >>>> ", schedule.scheduledJobs);
 
     } catch (error) {
         console.log(error);
@@ -66,7 +85,7 @@ export async function deleteTask(req, res) {
         }
 
         let singletask = await taskModel.findOneAndDelete({ _id: taskid });
-        console.log(singletask)
+        //console.log(singletask)
         if (!singletask) {
             return res.status(404).json({ error: 'Task not found' });
         }

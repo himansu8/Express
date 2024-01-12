@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
-const private_key= 'code'
+
+import config from '../../config/config.js';
+
+const private_key= config.PRIVATE_KEY
 
 
 

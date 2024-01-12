@@ -1,5 +1,5 @@
 import express from 'express';
-import {signup, login } from '../controller/user.controller.js'
+import {signup, login, verifyEmail, verifyPhone} from '../controller/user.controller.js'
 import {loginValidation,validationErrors,signupValidation} from '../middlewares/validation/index.js'
 
 const router = express.Router();
@@ -11,6 +11,13 @@ const router = express.Router();
 router.post('/signup', signupValidation(),validationErrors, signup);
 
 router.post('/login',loginValidation(),validationErrors, login);
+
+
+router.get('/verify/email/:token', verifyEmail);
+
+router.get('/verify/phone/:token', verifyPhone);
+
+
 
 
 export default router; 
