@@ -1,10 +1,12 @@
 import React, { useState } from "react"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 //let { firstName, lastName, email, phone, password } = req.body
 
 function SignUp() {
+  let navigate = useNavigate();
   let [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -29,7 +31,8 @@ function SignUp() {
       console.log(formData)
       let res = await axios.post('/api/user/signup', formData)
       console.log(res.data)
-      //localStorage.setItem("token", JSON.stringify({ token: res.data.token }))
+      navigate('/login');
+
     }
     catch (error) {
       console.log(error)
@@ -65,7 +68,7 @@ function SignUp() {
           <br />    
           <label>
             <b>Email</b><br />
-            <input type="text" placeholder="Enter email" name="email" onChange={onChangeHandler} value={email} />
+            <input type="email" placeholder="Enter email" name="email" onChange={onChangeHandler} value={email} />
           </label>
           <br />    
           <label>

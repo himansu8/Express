@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 import axios from "axios";
+import{useNavigate} from 'react-router-dom'
 
 
 function Login() {
-
+let navigate = useNavigate();
   let [userData, setUserData] = useState({
     email: "",
     password: ""
@@ -23,7 +24,9 @@ function Login() {
       let res = await axios.post('/api/user/login', userData)
       console.log(res.data)
       localStorage.setItem("token", JSON.stringify({ token: res.data.token }))
+      navigate('/dashboard');
     }
+
     catch (error) {
       console.log(error)
     }
