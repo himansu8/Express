@@ -5,6 +5,8 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Privateroutes from './components/Privateroutes';
+import AddTask from './components/AddTask';
+import ViewTask from './components/ViewTask';
 
 function App() {
   return (
@@ -17,6 +19,10 @@ function App() {
 <Route element={<Privateroutes/>}>
 
 <Route path='/dashboard' element={<Dashboard />} />
+<Route path='/addtask' element={<AddTask />} />
+<Route path='/task/:taskid' element={<ViewTask />} />
+
+
 
 </Route>
     </Routes>

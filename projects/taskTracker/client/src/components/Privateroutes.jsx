@@ -5,7 +5,7 @@ function Privateroutes() {
   return (
 
     <>
-        <h1>Privateroutes</h1>
+       
         {isToken ? <Outlet/> : <Navigate to='/login'/>}
 
     </>

@@ -37,7 +37,7 @@
   }
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password] ,[type=email],[type=date],[type=delete],[type=edit] {
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -55,4 +55,19 @@ button {
   border: none;
   cursor: pointer;
   width: 50%;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
