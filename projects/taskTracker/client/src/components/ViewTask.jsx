@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 function ViewTask() {
   const { taskid } = useParams();
-  console.log(taskid)
+  //console.log(taskid)
   const [task, setTask] = useState({});
 
   const fetchTask = async (taskid) => {
@@ -25,26 +25,31 @@ function ViewTask() {
   };
   useEffect(() => {
     fetchTask(taskid);
-  }, [])
+  },[]);
 
 
   return (
     <>
+    <center>
+<h1>TASK DETAILS</h1>
       <table>
         <tr>
+        <th>ID</th>
           <th>Task Name</th>
-          <th>Deadline</th>
+          <th>Creat Date</th>
+          <th>Task Deadline</th>
           <th>Status</th>
 
         </tr>
         <tr>
+        <td>{task._id}</td>
           <td>{task.taskName}</td>
+          <td>{new Date(task.createdAt).toLocaleDateString()}</td>
           <td>{new Date(task.deadline).toLocaleDateString()}</td>
           <td>{task.isCompleted ? "completed" : "Pending"}</td>
         </tr>
-
-
       </table>
+      </center>
 
     </>
   );

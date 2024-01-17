@@ -57,9 +57,8 @@ function AddTask() {
                     <br />
                     <label>
                         <b>Dead Line</b><br />
-                        <input type="date" name="taskDeadLine" placeholder="Date and Time" onChange={onChangeHandler} value={taskDeadLine} />
+                        <input type="datetime-local" name="taskDeadLine" placeholder="Date and Time" onChange={onChangeHandler} value={taskDeadLine} />
                     </label>
-
                     <br />
                     <button type="submit" onClick={onSubmit}>Submit</button>
                     <br />

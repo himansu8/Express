@@ -43,19 +43,20 @@ function SignUp() {
     e.preventDefault();
     setFormData({
       firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    password: ""
+      lastName: "",
+      email: "",
+      phone: "",
+      password: ""
     });
   }
 
 
   return (
     <>
-
+<div className="signup-main">
+<div className="signup">
       <form>
-        <div>
+        
           <label>
             <b>FirstName</b><br />
             <input type="text" placeholder="Enter firstName" name="firstName" onChange={onChangeHandler} value={firstName} />
@@ -65,28 +66,33 @@ function SignUp() {
             <b>LastName</b><br />
             <input type="text" placeholder="Enter lastName" name="lastName" onChange={onChangeHandler} value={lastName} />
           </label>
-          <br />    
+          <br />
           <label>
             <b>Email</b><br />
             <input type="email" placeholder="Enter email" name="email" onChange={onChangeHandler} value={email} />
           </label>
-          <br />    
+          <br />
           <label>
             <b>Phone Number</b><br />
             <input type="text" placeholder="Enter phone" name="phone" onChange={onChangeHandler} value={phone} />
           </label>
-          <br />    
+          <br />
           <label>
             <b>Password</b><br />
             <input type="password" placeholder="Enter Password" name="password" onChange={onChangeHandler} value={password} />
-            </label><br />
+          </label><br />
           <br />
           <button type="submit" onClick={onClick}>Submit</button>
           <br />
           <button type="button" onClick={onClear}>Cancel</button>
-        </div>
-      </form>
+        
 
+      </form>
+      </div>
+      <div className="signup_img">
+        <img className="signup_img1" src="https://thumbs.dreamstime.com/b/sign-up-member-icon-isolated-glassy-blue-round-button-abstract-illustration-sign-up-member-icon-glassy-blue-round-button-103857638.jpg" width={"600px"} height={"600px"}/>
+      </div>
+      </div>
     </>
   )
 }

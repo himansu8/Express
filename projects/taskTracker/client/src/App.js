@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import Privateroutes from './components/Privateroutes';
 import AddTask from './components/AddTask';
 import ViewTask from './components/ViewTask';
+import EditTask from './components/EditTask';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
 <Route path='/dashboard' element={<Dashboard />} />
 <Route path='/addtask' element={<AddTask />} />
 <Route path='/task/:taskid' element={<ViewTask />} />
+<Route path='/task/edit' element={<EditTask />} />
+
 
 
 

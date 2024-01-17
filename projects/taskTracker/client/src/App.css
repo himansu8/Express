@@ -37,8 +37,8 @@
   }
 }
 
-input[type=text], input[type=password] ,[type=email],[type=date],[type=delete],[type=edit] {
-  width: 50%;
+input[type=text], input[type=password] ,[type=email],[type=datetime-local],[type=delete],[type=edit] {
+  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -54,7 +54,7 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 50%;
+  width: 100%;
 }
 table {
   font-family: arial, sans-serif;
@@ -62,12 +62,68 @@ table {
   width: 100%;
 }
 
-td, th {
+td {
   border: 1px solid #dddddd;
   text-align: center;
-  padding: 8px;
+  padding: 10px;
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+ th {
+  border: 1px solid #dddddd;
+  background-color: #04AA6D;
+  text-align: center;
+  padding: 10px;
+}
+.home_div{
+  background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_7744540_3d-illustration-of-text-task-and-checkmark-completed-task-concept.html&psig=AOvVaw0xZvum9EisXkdtdWaErn_8&ust=1705516085999000&source=images&cd=vfe&ved=0CBMQjRxqFwoTCKDQxtnE4oMDFQAAAAAdAAAAABAE");
+  text-align: center;
+}
+.image{
+  width: 95%;
+  margin-top: 30px ;
+}
+.top_bar{
+  color:rgb(75, 47, 255);
+  font-family: arial, sans-serif;
+  font-size: larger;
+}
+.link_1{
+  margin-top:100px ;
+  font-family: arial, sans-serif;
+  font-size: 25px;
+}
+
+
+.signup-main{
+  display: flex;
+  
+}  
+.signup_img{
+  /* width: 100%; */
+  /* border: 1px solid green; */
+  width: 50px;
+  height: 50px;
+  
+}
+.signup{
+  width: 50%;
+  /* border: 1px solid red; */
+}
+.dashboard_img{
+  width: 10px;
+  height: 5px;
+  padding: 50px;
+  margin-left: 40px;
+}
+.addtask{
+margin-top: 20px;
+text-align: center;
+font-size: 100px;
+}
+.dashboard_data{
+  margin-top: 10px;
+
 }
