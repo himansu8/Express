@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 //     to: "himansusekharsahu50@gmail.com",
 //     subject: "Task Tracker Frontend",
 //     text: "Need To Complete123456",
-//     html: "<h1>Need To Complete</h2>"
+//     html: "<h1>Need To Complete aaaa</h2>"
 // }
 // sendMail(userObj);
 
@@ -29,11 +29,12 @@ const transporter = nodemailer.createTransport({
 
 async function sendMail(mailBody) {
     try {
+        //console.log("jinu")
         const info = await transporter.sendMail({
             from: `"HIMANSU 👻" <${SMTP_USER_EMAIL}>`, // sender address
             to: mailBody.to, // list of receivers
             subject: mailBody.subject, // Subject line
-            //text: mailBody.text, // plain text body
+            text: mailBody.text, // plain text body
             html: mailBody.html, // html body
         });
         console.log("Message sent: %s", info.messageId);
