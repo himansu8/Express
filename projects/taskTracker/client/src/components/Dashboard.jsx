@@ -36,7 +36,10 @@ function Dashboard() {
           "authorization": `Bearer ${token}`
         }
       });
-      fetchTasks(); // Refresh the tasks after deleting a task
+
+      let updatedTasks = tasks.filter((ele) => ele._id !== taskId);
+      setTasks(updatedTasks);
+      //fetchTasks(); // Refresh the tasks after deleting a task
     } catch (error) {
       console.log(error);
     }

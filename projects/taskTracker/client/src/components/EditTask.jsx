@@ -31,18 +31,13 @@ function EditTask() {
                     "authorization": `Bearer ${token}`
                 }
             });
-            //setTask(res.data);
+
             console.log(res.data)
             navigate("/dashboard")
         } catch (error) {
             console.log(error);
         }
     };
-
-    //   useEffect(() => {
-    //     fetchTask(state.taskid);
-    //   },[]);
-
     return (
         <>
 
