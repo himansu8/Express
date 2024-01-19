@@ -30,8 +30,10 @@ function ViewTask() {
 
   return (
     <>
+    <div className="edit_page">
     <center>
-<h1>TASK DETAILS</h1>
+<center><br /><h1 className="jinu1">TASK DETAILS</h1></center>
+
       <table>
         <tr>
         <th>ID</th>
@@ -50,7 +52,7 @@ function ViewTask() {
         </tr>
       </table>
       </center>
-
+      </div>
     </>
   );
 }

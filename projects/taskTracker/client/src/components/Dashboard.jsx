@@ -68,10 +68,10 @@ function Dashboard() {
 
   return (
     <>
-      <div>
+      <div className="dashboard_main">
         <div className="dashboard_img">
           <img src="https://th.bing.com/th/id/R.91dd0ef5bca86a269c39abe8ba4ed19d?rik=afBuubf455YtjA&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f573a5a8f62cd94560724a170%2ft%2f621d3c9517b3ee55f55df129%2f1646083221928%2fHL-websites-logos-dashboard-02.png%3fformat%3d1500w&ehk=BpxITSA%2fFL%2fDeoaAbdsrKk6OXFrlZS14PUEFcW7JqsE%3d&risl=&pid=ImgRaw&r=0"
-            width={"1150px"} height={"130px"} />
+            width={"1150px"} height={"90px"} />
         </div>
         <div className="addtask">
           <Link to='/addtask'><button><b>Add New Tasks</b></button></Link>

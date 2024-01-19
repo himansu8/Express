@@ -80,6 +80,9 @@ tr:nth-child(even) {
 .home_div{
   background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_7744540_3d-illustration-of-text-task-and-checkmark-completed-task-concept.html&psig=AOvVaw0xZvum9EisXkdtdWaErn_8&ust=1705516085999000&source=images&cd=vfe&ved=0CBMQjRxqFwoTCKDQxtnE4oMDFQAAAAAdAAAAABAE");
   text-align: center;
+  background-color:#B8FEC5;
+  height: 700px;
+  padding: 20px;
 }
 .image{
   width: 95%;
@@ -119,16 +122,21 @@ tr:nth-child(even) {
   width: 10px;
   height: 5px;
   padding: 50px;
-  margin-left: 40px;
+  margin-left: 10px;
 }
 .addtask{
-margin-top: 20px;
+margin-top: 30px;
 text-align: center;
 font-size: 100px;
 }
 .dashboard_data{
   margin-top: 10px;
 
+}
+.dashboard_main{
+  background-color:#B8FEC5;
+height: 700px;
+padding: 30px;
 }
 p, li{
   color: red;
@@ -188,4 +196,14 @@ text-align: center;
 .p3{
   color: green;
   font-size: 18px;
+}
+.edit_page{
+  background-color:#B8FEC5;;
+  height: 710px;
+  padding: 20px;
+}
+.addtask_page{
+  background-color:#B8FEC5;;
+  height: 710px;
+  padding: 30px;
 }

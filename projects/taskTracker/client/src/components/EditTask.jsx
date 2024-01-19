@@ -42,7 +42,10 @@ function EditTask() {
         <>
 
 
-            <div>EditTask</div>
+            <div className="edit_page">
+                <div className="edit_form">
+                <center><br /><h1 className="jinu1">UPDATE TASK</h1></center>
+
             <label>
                 <b>newTaskName</b><br />
                 <input type="text" placeholder="Enter TaskName" name="updateTaskName" onChange={onChangeHandler} />
@@ -55,10 +58,11 @@ function EditTask() {
             <br />
             <label>
                 <b>Status</b><br />
-                <input type="text" placeholder=" isCompleted" name="newIsCompleted" onChange={onChangeHandler} />
+                <input type="text" placeholder=" isCompleted (yes or no)" name="newIsCompleted" onChange={onChangeHandler} />
             </label>
             <button type="submit" onClick={() => inputData(state.taskid)}>Submit</button>
-
+            </div>
+            </div>
         </>
 
     )

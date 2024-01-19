@@ -47,9 +47,11 @@ function AddTask() {
     }
     return (
         <>
-
+<div className="addtask_page">
             <form>
-                <div>
+                <div >
+                <center><br /><h1 className="jinu1">ADD TASK</h1></center>
+
                     <label>
                         <b>Task Name</b><br />
                         <input type="text" placeholder="Enter firstName" name="taskName" onChange={onChangeHandler} value={taskName} />
@@ -65,6 +67,7 @@ function AddTask() {
                     <button type="button" onClick={onClear}>Cancel</button>
                 </div>
             </form>
+            </div>
 
         </>
     )
