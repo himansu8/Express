@@ -69,7 +69,7 @@ function validationErrors(req, res, next) {
         return next();
     }
 
-    res.send({ errors: result.array() });
+    res.status(401).send({ errors: result.array() });
 }
 export {
     loginValidation, validationErrors, signupValidation, taskNameValidation
