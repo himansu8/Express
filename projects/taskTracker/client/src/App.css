@@ -39,7 +39,7 @@
 
 input[type=text], input[type=password] ,[type=email],[type=datetime-local],[type=delete],[type=edit] {
   width: 100%;
-  padding: 12px 20px;
+  padding: 10px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -99,18 +99,21 @@ tr:nth-child(even) {
 
 .signup-main{
   display: flex;
-  
+  background-color:#B8FEC5;
+
 }  
 .signup_img{
   /* width: 100%; */
   /* border: 1px solid green; */
   width: 50px;
   height: 50px;
-  
+  margin-top: 250px;
+  margin-left: 20px;
 }
 .signup{
   width: 50%;
   /* border: 1px solid red; */
+  padding: 20px;
 }
 .dashboard_img{
   width: 10px;
@@ -126,4 +129,63 @@ font-size: 100px;
 .dashboard_data{
   margin-top: 10px;
 
+}
+p, li{
+  color: red;
+  font-size: 13px;
+
+}
+
+
+.login_img{
+  /* width: 100%; */
+  /* border: 1px solid green; */
+  /* width: 50px;
+  height: 50px; */
+  margin-top: 75px;
+  margin-left: 35px;
+  
+}
+.login{
+  width: 50%;
+  /* border: 1px solid red; */
+  padding: 20px;
+  margin-top: 20px;
+}
+.login_main{
+  
+  display: flex;
+  padding: 10px;
+  /* background-color:#B8FEC5; */
+  
+}
+.jinu{
+  height: 710px;
+  background-color:#B8FEC5;
+  margin-top: 0px;
+}
+.jinu1{
+  margin-top: 30px;
+  color: blue;
+  font-size: 50px;
+  border: 1px solid black;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  background-color: rgb(182, 236, 227);
+  border-radius: 50%;
+}
+.p1{
+  color: green;
+  text-align: center;
+  font-size: 20px;
+}
+.p2{
+text-align: center;
+  font-size: 20px;
+  margin-top: 400px;
+  margin-left: 120px;
+}
+.p3{
+  color: green;
+  font-size: 18px;
 }
