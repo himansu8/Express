@@ -46,12 +46,13 @@ function Dashboard() {
   }
 
 
-  function onClickHandler(taskid) {
+  function onClickHandler(taskid, taskName, deadline) {
+   
     navigate(
       '/task/edit',
       {
         state: {
-          taskid
+          taskid, taskName, deadline:new Date(deadline.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }))
         }
       }
     )
@@ -104,9 +105,9 @@ function Dashboard() {
                   <td>{task.taskName}</td>
                   <td>{new Date(task.deadline).toLocaleDateString()}</td>
                   <td>{task.isCompleted ? "completed" : "Pending"}</td>
-                  <td><button type="delete" onClick={() => deleteTask(task._id)}>&#10006;</button></td>
-                  <td><button onClick={() => onClickHandler(task._id)} type="edit">&#9998;</button></td>
-                  <td><Link to={`/task/${task._id}`} >View</Link></td>
+                  <td><button className="delete-button" type="delete" onClick={() => deleteTask(task._id)}>&#10006;</button></td>
+                  <td><button className="edit-button" onClick={() => onClickHandler(task._id,task.taskName,task.deadline)} type="edit">&#9998;</button></td>
+                  <td><Link to={`/task/${task._id}`} className="view-link">View</Link></td>
                 </tr>
               )
             })}

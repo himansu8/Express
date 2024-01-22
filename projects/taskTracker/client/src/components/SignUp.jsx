@@ -100,7 +100,7 @@ function SignUp({ alert, showAlert }) {
               <input type="text" placeholder="Enter phone" name="phone" onChange={onChangeHandler} value={phone} />
               <p>
                 <ul>
-                  <li>Phone Number need country code</li>
+                  <li>Phone Number with country code</li>
                 </ul>
               </p></label>
             <label>

@@ -1,43 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-input[type=text], input[type=password] ,[type=email],[type=datetime-local],[type=delete],[type=edit] {
+input[type=text], input[type=password] ,[type=email],[type=datetime-local],[type=delete],[type=edit],[type=datetime] {
   width: 100%;
   padding: 10px 20px;
   margin: 8px 0;
@@ -98,8 +59,6 @@ tr:nth-child(even) {
   font-family: arial, sans-serif;
   font-size: 25px;
 }
-
-
 .signup-main{
   display: flex;
   background-color:#B8FEC5;
@@ -143,8 +102,6 @@ p, li{
   font-size: 13px;
 
 }
-
-
 .login_img{
   /* width: 100%; */
   /* border: 1px solid green; */
@@ -173,14 +130,18 @@ p, li{
   margin-top: 0px;
 }
 .jinu1{
-  margin-top: 30px;
+  /* margin-top: 30px;
   color: blue;
   font-size: 50px;
   border: 1px solid black;
   padding-top: 10px;
   padding-bottom: 15px;
   background-color: rgb(182, 236, 227);
-  border-radius: 50%;
+  border-radius: 50%; */
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
 }
 .p1{
   color: green;
@@ -206,4 +167,83 @@ text-align: center;
   background-color:#B8FEC5;;
   height: 710px;
   padding: 30px;
+}
+
+.home-container {
+  padding: 20px;
+  background-color: rgb(182, 236, 227);
+
+}
+
+.top-bar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.link-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.link-section a {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+
+}
+
+.link-section a:hover {
+  color: #007bff;
+}
+
+.logo-image {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+}
+.footer {
+  margin-top: 30px;
+  text-align: center;
+  /* padding: 10px; */
+  background-color: rgb(85, 230, 400);
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+  height: 25px;
+  position: relative;
+}
+
+.delete-button {
+  background-color: #bb5c66;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  width: 50px;
+}
+.edit-button {
+  background-color: #47a287;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  width: 50px;
+}
+.delete-button:hover {
+  background-color: #c82333;
+}
+.edit-button:hover {
+  background-color: #1bea0c;
+}
+.view-link {
+  text-decoration: none;
+  color: #007bff;
+}
+.view-link:hover {
+  color: #3cf00a;
 }
